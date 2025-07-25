@@ -18,8 +18,13 @@ class Game {
 
   registerEvents() {
     document.addEventListener("keyup", (e) => {
+      const ignoredKeys = ["Shift", "Control", "Alt", "Meta", "CapsLock", "Tab", "Escape"];
+      if (ignoredKeys.includes(e.key)) {
+        return;
+      }
+      
       const currentSymbol = this.currentSymbol.textContent;
-      if (currentSymbol === e.key) {
+      if (currentSymbol.toLowerCase() === e.key.toLowerCase()) {
         this.success();
       } else {
         this.fail();
